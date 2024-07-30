@@ -43,7 +43,7 @@ dependencies:
   record: ^5.0.4
   audioplayers: ^6.0.0
   image_cropper: ^4.0.1
-  permission_handler: ^11.3.0
+  permission_handler: ^11.3.1
   open_filex: ^4.4.0
   firebase_dynamic_links: ^5.4.18
   package_info_plus: ^6.0.0
@@ -96,6 +96,9 @@ dependencies:
   pinput: ^1.2.2
   qr_code_scanner: ^1.0.1
   calendar_timeline: ^1.1.2
+
+  agora_uikit: 
+  agora_rtc_engine:
 
 dependency_overrides:
   intl: ^0.17.0

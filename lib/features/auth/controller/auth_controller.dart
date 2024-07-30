@@ -1,3 +1,6 @@
+import 'package:eClassify/features/jobs/model/company_model.dart';
+import 'package:eClassify/features/jobs/model/job_seeker_profile_model.dart';
+import 'package:eClassify/features/kyc/model/kyc_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,8 +63,32 @@ class AuthControllerNotifier extends StateNotifier<bool> {
   Stream<User?> get authStateChange => authRepository.authStateChange;
 
   Future<UserModelS?> getCurrentUserDataaaa() async {
-    UserModelS? user = await authRepository.getCurrentUserData();
-    return user;
+    // UserModelS? user = await authRepository.getCurrentUserData();
+    return UserModelS(
+        name: 'afreed',
+        email: 'm@gmail.com',
+        profilePic: '',
+        uid: 'uid',
+        phoneNumber: '',
+        address: '',
+        userPincode: '',
+        jobDetailsUpdated: '',
+        kycModel: KYCModel(
+            name: '',
+            fatherName: '',
+            motherName: '',
+            aadhaarNumber: '',
+            panNumber: '',
+            mobileNuber: '',
+            email: '',
+            ifscCode: '',
+            areaPincode: '',
+            age: 10,
+            company: '',
+            accountNumber: ''),
+        jobSeekerProfileModel: JobSeekerProfileModel(name:  '', email: 'email', jobTitle: '', experience: 1, bio: '', resume: ''),
+        companyModel: CompanyModel(companyName: 'companyName', industry: 'industry', companySize: 2, location: 'location', companyWebsiteURL: 'companyWebsiteURL', recruiterUid: 'recruiterUid'),
+        isPartner: false);
   }
 
   Future<void> signOut() async {

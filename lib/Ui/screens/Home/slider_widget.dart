@@ -182,7 +182,7 @@ class SliderWidget extends StatefulWidget {
 class _SliderWidgetState extends State<SliderWidget>
     with AutomaticKeepAliveClientMixin {
   final ValueNotifier<int> _bannerIndex = ValueNotifier(0);
-  late Timer _timer;
+  // late Timer _timer;
   int bannersLength = 0;
   final PageController _pageController = PageController();
 
@@ -200,7 +200,7 @@ class _SliderWidgetState extends State<SliderWidget>
   void dispose() {
     super.dispose();
     _bannerIndex.dispose();
-    _timer.cancel();
+    // _timer.cancel();
     _pageController.dispose(); // Dispose the PageController
   }
   // commnted because having a issue

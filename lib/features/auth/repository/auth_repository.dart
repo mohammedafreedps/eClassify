@@ -16,7 +16,6 @@ import '../../jobs/model/job_seeker_profile_model.dart';
 import '../../kyc/model/kyc_model.dart';
 import '../models/user_modelaaa.dart';
 
-
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository(
     firestore: FirebaseFirestore.instance,
@@ -35,17 +34,20 @@ class AuthRepository {
 
   Stream<User?> get authStateChange => auth.authStateChanges();
 
-  Future<Either<Failure, UserModelS>> signInWithGoogle(BuildContext context) async {
+  Future<Either<Failure, UserModelS>> signInWithGoogle(
+      BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
       final result = await auth.signInWithCredential(credential);
-
-      UserModelS UserModel = await _handleUserCreationOrUpdate1(result.user!, result.additionalUserInfo!.isNewUser);
+      print(result.toString() + '---------');
+      UserModelS UserModel = await _handleUserCreationOrUpdate1(
+          result.user!, result.additionalUserInfo!.isNewUser);
 
       return right(UserModel);
     } catch (e) {
@@ -53,35 +55,35 @@ class AuthRepository {
     }
   }
 
+  // Future<UserModelS> getCurrentUserData() async {
+  //   //  var userData = await firestore.collection('users').doc(auth.currentUser?.uid).get();
+  //   var userData =
+  //       await firestore.collection('users').doc(HiveUtils.getUserId()).get();
+  //   print(HiveUtils.getUserId().toString() + '--------------');
+  //   UserModelS user;
+  //   if (userData.data() != null) {
+  //     user = UserModelS.fromMap(userData.data()!);
+  //   } else {
+  //     /*Navigator.pushReplacementNamed(
+  //       context,
+  //       Routes.completeProfile,
+  //       arguments: {
+  //         "from": "login",
+  //         "popToCurrent": false,
+  //         "type": AuthenticationType.email,
+  //         "extraData": {
+  //           "firebaseUserId": "",
+  //           "email": "",
+  //           "username": "",
+  //           "mobile": "",
 
-
-  Future<UserModelS> getCurrentUserData() async {
-  //  var userData = await firestore.collection('users').doc(auth.currentUser?.uid).get();
-    var userData = await firestore.collection('users').doc(HiveUtils.getUserId()).get();
-    UserModelS user;
-    if (userData.data() != null) {
-      user = UserModelS.fromMap(userData.data()!);
-    } else {
-      /*Navigator.pushReplacementNamed(
-        context,
-        Routes.completeProfile,
-        arguments: {
-          "from": "login",
-          "popToCurrent": false,
-          "type": AuthenticationType.email,
-          "extraData": {
-            "firebaseUserId": "",
-            "email": "",
-            "username": "",
-            "mobile": "",
-
-          }
-        },
-      );*/
-      throw ServerException("User Not found");
-    }
-    return user;
-  }
+  //         }
+  //       },
+  //     );*/
+  //     throw ServerException("User Not found");
+  //   }
+  //   return user;
+  // }
 
 /*class AuthRepository {
   final FirebaseFirestore firestore;
@@ -198,7 +200,8 @@ class AuthRepository {
     return await auth.signOut();
   }
 
-  Future<UserModelS> _handleUserCreationOrUpdate1(User user, bool isNewUser) async {
+  Future<UserModelS> _handleUserCreationOrUpdate1(
+      User user, bool isNewUser) async {
     UserModelS UserModel;
     if (isNewUser) {
       UserModel = UserModelS(
@@ -244,8 +247,32 @@ class AuthRepository {
       );
       await firestore.collection("users").doc(user.uid).set(UserModel.toMap());
     } else {
-      UserModel = await getCurrentUserData();
+      // UserModel = await getCurrentUserData();
     }
-    return UserModel;
+    return UserModel = UserModelS(
+        name: 'afreed',
+        email: 'm@gmail.com',
+        profilePic: '',
+        uid: 'uid',
+        phoneNumber: '',
+        address: '',
+        userPincode: '',
+        jobDetailsUpdated: '',
+        kycModel: KYCModel(
+            name: '',
+            fatherName: '',
+            motherName: '',
+            aadhaarNumber: '',
+            panNumber: '',
+            mobileNuber: '',
+            email: '',
+            ifscCode: '',
+            areaPincode: '',
+            age: 10,
+            company: '',
+            accountNumber: ''),
+        jobSeekerProfileModel: JobSeekerProfileModel(name:  '', email: 'email', jobTitle: '', experience: 1, bio: '', resume: ''),
+        companyModel: CompanyModel(companyName: 'companyName', industry: 'industry', companySize: 2, location: 'location', companyWebsiteURL: 'companyWebsiteURL', recruiterUid: 'recruiterUid'),
+        isPartner: false);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:eClassify/features/calling/video_conference_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -311,5 +312,10 @@ List<HomeContent> homeContents = [
     title: "Pay",
     imagePath: "assets/home/pay.png",
     screen: HomeScreenPay(),
+  ),
+  HomeContent(
+    title: "Call",
+    imagePath: "assets/home/calling.jpg",
+    screen: VideoConferenceScreen(),
   ),
 ];

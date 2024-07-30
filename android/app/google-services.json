@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "575901379255",
+    "project_id": "eclassify-6dd37",
+    "storage_bucket": "eclassify-6dd37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575901379255:android:52f2be79cbfbfb117dbb32",
+        "android_client_info": {
+          "package_name": "com.worldworklinks.classified"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575901379255-321qkf1pf5ee6md6rie2co5peipmj420.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxIqPbbgTtNhC0pQ4UibQcIXTTZ7MBKMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575901379255-321qkf1pf5ee6md6rie2co5peipmj420.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "575901379255-6gne0l5d1slnlfcmfmvd15rasohkuadr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.worldworklinks.classified"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
